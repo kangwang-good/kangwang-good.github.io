@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>algorithms 10-1 bubble sort | Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="冒泡排序（bubble sort）&#x2F;小数浮起&#x2F;大数沉底原始数据（10个数字）：0, 2, 3, 1, 9, 6, 4, 5, 8, 7  第1趟： 第1次  0, 2, 3, 1, 9, 6, 4, 5, 8, 7 0, 2, 3, 1, 9, 6, 4, 5, 8, 7   第2次  0, 2, 3, 1, 9, 6, 4, 5, 8, 7 0, 2, 3, 1, 9, 6,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="algorithms 10-1 bubble sort">
+<meta property="og:url" content="http://wkang.com/2023/04/05/algorithms-10-1-bubble-sort/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="冒泡排序（bubble sort）&#x2F;小数浮起&#x2F;大数沉底原始数据（10个数字）：0, 2, 3, 1, 9, 6, 4, 5, 8, 7  第1趟： 第1次  0, 2, 3, 1, 9, 6, 4, 5, 8, 7 0, 2, 3, 1, 9, 6, 4, 5, 8, 7   第2次  0, 2, 3, 1, 9, 6, 4, 5, 8, 7 0, 2, 3, 1, 9, 6,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-04T16:09:19.000Z">
+<meta property="article:modified_time" content="2023-04-04T16:09:37.862Z">
+<meta property="article:author" content="Wang Kang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wkang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-algorithms-10-1-bubble-sort" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/05/algorithms-10-1-bubble-sort/" class="article-date">
+  <time class="dt-published" datetime="2023-04-04T16:09:19.000Z" itemprop="datePublished">2023-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      algorithms 10-1 bubble sort
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="冒泡排序（bubble-sort）-x2F-小数浮起-x2F-大数沉底"><a href="#冒泡排序（bubble-sort）-x2F-小数浮起-x2F-大数沉底" class="headerlink" title="冒泡排序（bubble sort）&#x2F;小数浮起&#x2F;大数沉底"></a>冒泡排序（bubble sort）&#x2F;小数浮起&#x2F;大数沉底</h2><p>原始数据（10个数字）：0, 2, 3, 1, 9, 6, 4, 5, 8, 7</p>
+<ul>
+<li>第1趟：<ul>
+<li>第1次 <ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">2</span>, 3, 1, 9, 6, 4, 5, 8, 7</li>
+<li><span style="color:red">0</span>, <span style="color:red">2</span>, 3, 1, 9, 6, 4, 5, 8, 7</li>
+</ul>
+</li>
+<li>第2次 <ul>
+<li>0, <span style="color:blue">2</span>, <span style="color:blue">3,</span> 1, 9, 6, 4, 5, 8, 7</li>
+<li>0, <span style="color:red">2</span>, <span style="color:red">3</span>, 1, 9, 6, 4, 5, 8, 7</li>
+</ul>
+</li>
+<li>第3次 <ul>
+<li>0, 2, <span style="color:blue">3</span>, <span style="color:blue">1</span>, 9, 6, 4, 5, 8, 7</li>
+<li>0, 2, <span style="color:red">1</span>, <span style="color:red">3</span>, 9, 6, 4, 5, 8, 7</li>
+</ul>
+</li>
+<li>第4次 <ul>
+<li>0, 2, 1, <span style="color:blue">3</span>, <span style="color:blue">9</span>, 6, 4, 5, 8, 7</li>
+<li>0, 2, 1, <span style="color:red">3</span>, <span style="color:red">9</span>, 6, 4, 5, 8, 7</li>
+</ul>
+</li>
+<li>第5次 <ul>
+<li>0, 2, 1, 3, <span style="color:blue">9</span>, <span style="color:blue">6</span>, 4, 5, 8, 7</li>
+<li>0, 2, 1, 3, <span style="color:red">6</span>, <span style="color:red">9</span>, 4, 5, 8, 7</li>
+</ul>
+</li>
+<li>第6次 <ul>
+<li>0, 2, 1, 3, 6, <span style="color:blue">9</span>, <span style="color:blue">4</span>, 5, 8, 7</li>
+<li>0, 2, 1, 3, 6, <span style="color:red">4</span>, <span style="color:red">9</span>, 5, 8, 7</li>
+</ul>
+</li>
+<li>第7次 <ul>
+<li>0, 2, 1, 3, 6, 4, <span style="color:blue">9</span>, <span style="color:blue">5</span>, 8, 7</li>
+<li>0, 2, 1, 3, 6, 4, <span style="color:red">5</span>, <span style="color:red">9</span>, 8, 7</li>
+</ul>
+</li>
+<li>第8次<ul>
+<li>0, 2, 1, 3, 6, 4, 5, <span style="color:blue">9</span>, <span style="color:blue">8</span>, 7</li>
+<li>0, 2, 1, 3, 6, 4, 5, <span style="color:red">8</span>, <span style="color:red">9</span>, 7</li>
+</ul>
+</li>
+<li>第9次<ul>
+<li>0, 2, 1, 3, 6, 4, 5, 8, <span style="color:blue">9</span>, <span style="color:blue">7</span></li>
+<li>0, 2, 1, 3, 6, 4, 5, 8, <span style="color:red">7</span>, <span style="color:red">9</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第2趟：<ul>
+<li>第1次 <ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">2</span>, 1, 3, 6, 4, 5, 8, 7, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">2</span>, 1, 3, 6, 4, 5, 8, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次 <ul>
+<li>0, <span style="color:blue">2</span>, <span style="color:blue">1</span>, 3, 6, 4, 5, 8, 7, <span style="color:green">9</span></li>
+<li>0, <span style="color:red">1</span>, <span style="color:red">2</span>, 3, 6, 4, 5, 8, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第3次 <ul>
+<li>0, 1, <span style="color:blue">2</span>, <span style="color:blue">3</span>, 6, 4, 5, 8, 7, <span style="color:green">9</span></li>
+<li>0, 1, <span style="color:red">2</span>, <span style="color:red">3</span>, 6, 4, 5, 8, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第4次 <ul>
+<li>0, 1, 2, <span style="color:blue">3</span>, <span style="color:blue">6</span>, 4, 5, 8, 7, <span style="color:green">9</span></li>
+<li>0, 1, 2, <span style="color:red">3</span>, <span style="color:red">6</span>, 4, 5, 8, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第5次 <ul>
+<li>0, 1, 2, 3, <span style="color:blue">6</span>, <span style="color:blue">4</span>, 5, 8, 7, <span style="color:green">9</span></li>
+<li>0, 1, 2, 3, <span style="color:red">4</span>, <span style="color:red">6</span>, 5, 8, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第6次 <ul>
+<li>0, 1, 2, 3, 4, <span style="color:blue">6</span>, <span style="color:blue">5</span>, 8, 7, <span style="color:green">9</span></li>
+<li>0, 1, 2, 3, 4, <span style="color:red">5</span>, <span style="color:red">6</span>, 8, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第7次 <ul>
+<li>0, 1, 2, 3, 4, 5, <span style="color:blue">6</span>, <span style="color:blue">8</span>, 7, <span style="color:green">9</span></li>
+<li>0, 1, 2, 3, 4, 5, <span style="color:red">6</span>, <span style="color:red">8</span>, 7, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第8次 <ul>
+<li>0, 1, 2, 3, 4, 5, 6, <span style="color:blue">8</span>, <span style="color:blue">7</span>, <span style="color:green">9</span></li>
+<li>0, 1, 2, 3, 4, 5, 6, <span style="color:red">7</span>, <span style="color:red">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第3趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, 2, 3, 4, 5, 6, 7, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, 2, 3, 4, 5, 6, 7, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次</li>
+<li>第3次</li>
+<li>第4次</li>
+<li>第5次</li>
+<li>第6次</li>
+<li>第7次</li>
+</ul>
+</li>
+<li>第4趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, 2, 3, 4, 5, 6, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, 2, 3, 4, 5, 6, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次</li>
+<li>第3次</li>
+<li>第4次</li>
+<li>第5次</li>
+<li>第6次</li>
+</ul>
+</li>
+<li>第5趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, 2, 3, 4, 5, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, 2, 3, 4, 5, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次</li>
+<li>第3次</li>
+<li>第4次</li>
+<li>第5次</li>
+</ul>
+</li>
+<li>第6趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, 2, 3, 4, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, 2, 3, 4, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次</li>
+<li>第3次</li>
+<li>第4次</li>
+</ul>
+</li>
+<li>第7趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, 2, 3, <span style="color:green">4</span>, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, 2, 3, <span style="color:green">4</span>, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次</li>
+<li>第3次</li>
+</ul>
+</li>
+<li>第8趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, 2, <span style="color:green">3</span>, <span style="color:green">4</span>, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, 2, <span style="color:green">3</span>, <span style="color:green">4</span>, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+<li>第2次</li>
+</ul>
+</li>
+<li>第9趟：<ul>
+<li>第1次<ul>
+<li><span style="color:blue">0</span>, <span style="color:blue">1</span>, <span style="color:green">2</span>, <span style="color:green">3</span>, <span style="color:green">4</span>, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+<li><span style="color:red">0</span>, <span style="color:red">1</span>, <span style="color:green">2</span>, <span style="color:green">3</span>, <span style="color:green">4</span>, <span style="color:green">5</span>, <span style="color:green">6</span>, <span style="color:green">7</span>, <span style="color:green">8</span>, <span style="color:green">9</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wkang.com/2023/04/05/algorithms-10-1-bubble-sort/" data-id="clg2gi9tu0000v4vg4x108q82" data-title="algorithms 10-1 bubble sort" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/05/hexo-new-c-g-s-d/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo new c g s d</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/05/algorithms-10-1-bubble-sort/">algorithms 10-1 bubble sort</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/05/hexo-new-c-g-s-d/">hexo new c g s d</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/17/Markdown2/">Markdown2</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/17/Markdown1/">markdown</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Wang Kang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
